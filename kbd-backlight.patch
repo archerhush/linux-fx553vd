@@ -1,0 +1,32 @@
+--- hid-asus.c
++++ /home/john/Downloads/hid-asus.c
+@@ -71,7 +71,7 @@ MODULE_DESCRIPTION("Asus HID Keyboard and TouchPad");
+ #define QUIRK_USE_KBD_BACKLIGHT                BIT(5)
+ #define QUIRK_T100_KEYBOARD            BIT(6)
+ 
+-#define I2C_KEYBOARD_QUIRKS                    (QUIRK_FIX_NOTEBOOK_REPORT | \
++#define I2C_KEYBOARD_QUIRKS                    (QUIRK_USE_KBD_BACKLIGHT | QUIRK_FIX_NOTEBOOK_REPORT | \
+                                                 QUIRK_NO_INIT_REPORTS | \
+                                                 QUIRK_NO_CONSUMER_USAGES)
+ #define I2C_TOUCHPAD_QUIRKS                    (QUIRK_NO_INIT_REPORTS | \
+@@ -302,8 +302,10 @@ static int asus_kbd_register_leds(struct hid_device *hdev)
+                return ret;
+ 
+        /* Check for backlight support */
++        /*
+        if (!(kbd_func & SUPPORT_KBD_BACKLIGHT))
+                return -ENODEV;
++        */
+ 
+        drvdata->kbd_backlight = devm_kzalloc(&hdev->dev,
+                                              sizeof(struct asus_kbd_leds),                                                                                                
+@@ -566,7 +568,7 @@ static const struct hid_device_id asus_devices[] = {                                                                                                   
+        { HID_I2C_DEVICE(USB_VENDOR_ID_ASUSTEK,                                                                                                                            
+                USB_DEVICE_ID_ASUSTEK_I2C_TOUCHPAD), I2C_TOUCHPAD_QUIRKS },                                                                                                
+        { HID_USB_DEVICE(USB_VENDOR_ID_ASUSTEK,                                                                                                                            
+-               USB_DEVICE_ID_ASUSTEK_ROG_KEYBOARD1) },                                                                                                                    
++               USB_DEVICE_ID_ASUSTEK_ROG_KEYBOARD1), QUIRK_USE_KBD_BACKLIGHT },                                                                                           
+        { HID_USB_DEVICE(USB_VENDOR_ID_ASUSTEK,                                                                                                                            
+                USB_DEVICE_ID_ASUSTEK_ROG_KEYBOARD2), QUIRK_USE_KBD_BACKLIGHT },                                                                                           
+        { HID_USB_DEVICE(USB_VENDOR_ID_ASUSTEK, 
+
