@@ -6,7 +6,8 @@ installing the custom kernel, which is based on the latest stable
 Successfully tested on an FX553VD laptop.
 
 ### overall patches
-- Parts of *Endless OS* kernel which enable support of any function key (except keyboard backlight control).
+- <del>Parts of *Endless OS* kernel which enable support of any function 
+key (except keyboard backlight control).</del>
 - Keyboard backlight control support.
 
 ### setup
@@ -29,4 +30,4 @@ After the package has been built correctly, you can install it by launching:
 # conclusion
 
 This project is supposed to be in a constant evolution until the stock kernel will not be completely congenial to these laptops. Please, report
-new patches to help to let the work grow up.
+new patches when you can to help to let the work grow up.
